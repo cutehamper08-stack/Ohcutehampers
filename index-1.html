@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oh Cute Hampers | Bangalore 🎀</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:     #E8B4B8;
+      --deep:     #C4687A;
+      --blush:    #F9EEF0;
+      --rose:     #F2D4D7;
+      --cream:    #FDF8F5;
+      --dark:     #2C1A1D;
+      --muted:    #8C6570;
+      --white:    #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(253,248,245,0.95);
+      backdrop-filter: blur(12px);
+      padding: 16px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--rose);
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: var(--deep);
+      letter-spacing: 0.03em;
+    }
+    .logo span { font-style: italic; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--deep); }
+    .nav-insta {
+      background: var(--deep); color: #fff !important;
+      padding: 8px 18px; border-radius: 30px;
+      font-size: 0.78rem !important;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #FDF2F4 0%, #F9EEF0 40%, #F2D4D7 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 80px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); color: var(--deep);
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 8px 20px; border-radius: 30px;
+      border: 1px solid var(--pink);
+      margin-bottom: 32px;
+      box-shadow: 0 2px 12px rgba(196,104,122,0.1);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.05; color: var(--dark);
+      margin-bottom: 8px; font-weight: 400;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--deep);
+      display: block;
+    }
+    .hero-loc {
+      font-size: 0.82rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: 1rem; color: var(--muted);
+      max-width: 420px; margin: 0 auto 40px;
+      line-height: 1.8; font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; text-decoration: none;
+      padding: 14px 32px; border-radius: 50px;
+      font-size: 0.88rem; font-weight: 500;
+      letter-spacing: 0.06em; transition: all 0.25s;
+    }
+    .btn-dark { background: var(--dark); color: #fff; box-shadow: 0 4px 20px rgba(44,26,29,0.2); }
+    .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(44,26,29,0.3); }
+    .btn-ghost { border: 1.5px solid var(--deep); color: var(--deep); }
+    .btn-ghost:hover { background: var(--deep); color: #fff; }
+
+    /* FLOATING ELEMENTS */
+    .float { position: absolute; pointer-events: none; }
+    .f1 { top: 15%; left: 6%; font-size: 2rem; animation: bob 5s ease-in-out infinite; opacity: 0.6; }
+    .f2 { top: 20%; right: 8%; font-size: 1.5rem; animation: bob 4s ease-in-out infinite 1s; opacity: 0.5; }
+    .f3 { bottom: 25%; left: 10%; font-size: 1.8rem; animation: bob 6s ease-in-out infinite 2s; opacity: 0.4; }
+    .f4 { bottom: 35%; right: 6%; font-size: 1.4rem; animation: bob 5s ease-in-out infinite 0.5s; opacity: 0.5; }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+    /* TICKER */
+    .ticker { background: var(--deep); padding: 12px 0; overflow: hidden; white-space: nowrap; }
+    .ticker-track { display: inline-flex; gap: 40px; animation: tick 20s linear infinite; }
+    .ticker-track span { font-size: 0.78rem; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; }
+    .ticker-track span::before { content: '🎀  '; }
+    @keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* SECTIONS */
+    section { padding: 80px 24px; }
+    .container { max-width: 1060px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--deep); margin-bottom: 12px;
+    }
+    .heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--dark); line-height: 1.15; margin-bottom: 14px;
+      font-weight: 400;
+    }
+    .heading em { font-style: italic; color: var(--deep); }
+    .subtext { color: var(--muted); font-size: 0.95rem; line-height: 1.8; max-width: 500px; font-weight: 300; }
+
+    /* HAMPER CARDS */
+    .hamper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 48px; }
+    .hamper-card {
+      background: var(--white); border-radius: 24px;
+      overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid var(--rose);
+      cursor: default;
+    }
+    .hamper-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(196,104,122,0.15); }
+    .card-img {
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    .gi { background: linear-gradient(135deg, #FCE8EC, #F9D4DA); }
+    .je { background: linear-gradient(135deg, #FDE8D0, #FADADC); }
+    .mo { background: linear-gradient(135deg, #F0E8FC, #FADCE8); }
+    .ba { background: linear-gradient(135deg, #E8F4FC, #DCEEFA); }
+    .card-body { padding: 20px; }
+    .card-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; color: var(--dark); margin-bottom: 6px; font-weight: 600;
+    }
+    .card-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .card-tag {
+      display: inline-block; margin-top: 12px;
+      background: var(--blush); color: var(--deep);
+      font-size: 0.72rem; padding: 4px 12px; border-radius: 20px;
+      letter-spacing: 0.06em;
+    }
+
+    /* GALLERY / REVIEWS */
+    .gallery-bg { background: var(--blush); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-top: 48px;
+    }
+    .gallery-item {
+      border-radius: 16px; overflow: hidden;
+      aspect-ratio: 1;
+      background: var(--rose);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      position: relative;
+      border: 1px solid rgba(196,104,122,0.2);
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover { transform: scale(1.03); }
+    .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+    .gallery-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(44,26,29,0.7));
+      color: #fff; font-size: 0.72rem; padding: 20px 10px 10px;
+      text-align: center; letter-spacing: 0.06em;
+    }
+    .g1 { background: linear-gradient(135deg, #F9D4DA, #F2B8BE); }
+    .g2 { background: linear-gradient(135deg, #FCE8D0, #F9D4B8); }
+    .g3 { background: linear-gradient(135deg, #F0D4F9, #E0B8F2); }
+    .g4 { background: linear-gradient(135deg, #D4EAF9, #B8D8F2); }
+    .g5 { background: linear-gradient(135deg, #F9F0D4, #F2E4B8); }
+
+    /* REVIEWS */
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 48px; }
+    .review-card {
+      background: var(--white); border-radius: 20px;
+      padding: 28px; border: 1px solid var(--rose);
+      position: relative; overflow: hidden;
+    }
+    .review-card::before {
+      content: '"'; position: absolute; top: -10px; right: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem; color: var(--rose); line-height: 1;
+      pointer-events: none;
+    }
+    .review-stars { color: var(--deep); font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 12px; }
+    .review-text { font-size: 0.9rem; color: var(--muted); line-height: 1.75; margin-bottom: 16px; font-style: italic; }
+    .review-name { font-weight: 500; font-size: 0.85rem; color: var(--dark); }
+    .review-type { font-size: 0.75rem; color: var(--pink); margin-top: 2px; }
+    .review-img-placeholder {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--rose); display: flex; align-items: center;
+      justify-content: center; font-size: 1.2rem;
+      margin-bottom: 14px;
+    }
+
+    /* HOW IT WORKS */
+    .steps-bg { background: var(--dark); }
+    .steps-bg .eyebrow { color: var(--pink); }
+    .steps-bg .heading { color: var(--white); }
+    .steps-bg .subtext { color: rgba(255,255,255,0.5); }
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-top: 56px; }
+    .step { text-align: center; }
+    .step-circle {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(232,180,184,0.15);
+      border: 1px solid rgba(232,180,184,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin: 0 auto 20px;
+    }
+    .step h3 { font-size: 0.95rem; font-weight: 500; color: var(--white); margin-bottom: 8px; }
+    .step p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+    /* OCCASIONS */
+    .occ-flex { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+    .occ-pill {
+      background: var(--white); color: var(--muted);
+      padding: 9px 20px; border-radius: 30px;
+      font-size: 0.83rem; border: 1px solid var(--rose);
+      transition: all 0.2s; cursor: default;
+    }
+    .occ-pill:hover { background: var(--deep); color: #fff; border-color: var(--deep); }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, #F9EEF0, #F2D4D7);
+      text-align: center; padding: 90px 24px;
+    }
+    .cta-section .heading { margin: 0 auto 16px; }
+    .cta-section .subtext { margin: 0 auto 36px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-pink { background: var(--deep); color: #fff; box-shadow: 0 4px 20px rgba(196,104,122,0.3); }
+    .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,104,122,0.45); }
+    .btn-wa { background: #25D366; color: #fff; box-shadow: 0 4px 20px rgba(37,211,102,0.3); }
+    .btn-wa:hover { transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { background: var(--dark); padding: 48px 24px; text-align: center; }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; color: var(--pink); margin-bottom: 12px;
+    }
+    .footer-logo span { font-style: italic; }
+    footer p { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.7; }
+    .footer-links { display: flex; justify-content: center; gap: 20px; margin: 20px 0; flex-wrap: wrap; }
+    .footer-links a { color: var(--pink); text-decoration: none; font-size: 0.8rem; transition: opacity 0.2s; }
+    .footer-links a:hover { opacity: 0.6; }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.2); margin-top: 24px; }
+
+    @media(max-width:640px){
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .gallery-item.wide { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Oh <span>Cute</span> Hampers</div>
+  <ul class="nav-links">
+    <li><a href="#hampers">Hampers</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#occasions">Occasions</a></li>
+    <li><a href="https://instagram.com/cute_hampers_2023" target="_blank" class="nav-insta">📸 Instagram</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="float f1">🌸</span>
+  <span class="float f2">🎀</span>
+  <span class="float f3">✨</span>
+  <span class="float f4">🌷</span>
+  <div class="hero-tag">✨ Customised Aesthetic Hampers</div>
+  <h1>Gift emotions,<em>not just hampers</em></h1>
+  <p class="hero-loc">📍 Bangalore</p>
+  <p class="hero-sub">Handcrafted with love, wrapped with heart — for every person & every precious moment.</p>
+  <div class="hero-btns">
+    <a href="#hampers" class="btn btn-dark">Explore Hampers</a>
+    <a href="https://instagram.com/cute_hampers_2023" target="_blank" class="btn btn-ghost">DM to Order</a>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Girly Hampers</span><span>Jewellery Hampers</span><span>Baby Hampers</span>
+    <span>Mother's Day</span><span>Customised Gifts</span><span>Only Prepayment</span>
+    <span>Bangalore Based</span><span>DM to Order</span>
+    <span>Girly Hampers</span><span>Jewellery Hampers</span><span>Baby Hampers</span>
+    <span>Mother's Day</span><span>Customised Gifts</span><span>Only Prepayment</span>
+    <span>Bangalore Based</span><span>DM to Order</span>
+  </div>
+</div>
+
+<!-- HAMPERS -->
+<section id="hampers">
+  <div class="container">
+    <div class="eyebrow">Our Hampers</div>
+    <h2 class="heading">Something <em>special</em><br>for everyone</h2>
+    <p class="subtext">Every hamper is handpicked, personalised & packed with feeling — not just products.</p>
+    <div class="hamper-grid">
+      <div class="hamper-card">
+        <div class="card-img gi">👗</div>
+        <div class="card-body">
+          <h3>Girls & Women</h3>
+          <p>Beauty, self-care & girly treats she'll absolutely love</p>
+          <span class="card-tag">Most Popular ✨</span>
+        </div>
+      </div>
+      <div class="hamper-card">
+        <div class="card-img je">💍</div>
+        <div class="card-body">
+          <h3>Jewellery Hampers</h3>
+          <p>Dainty pieces & accessories wrapped beautifully</p>
+          <span class="card-tag">New 🌸</span>
+        </div>
+      </div>
+      <div class="hamper-card">
+        <div class="card-img mo">🌸</div>
+        <div class="card-body">
+          <h3>Mother's Day</h3>
+          <p>Everything she deserves — packed with love</p>
+          <span class="card-tag">Seasonal 💝</span>
+        </div>
+      </div>
+      <div class="hamper-card">
+        <div class="card-img ba">👶</div>
+        <div class="card-body">
+          <h3>Baby Hampers</h3>
+          <p>Sweet little bundles for the newest family member</p>
+          <span class="card-tag">Precious 🍼</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-bg" id="gallery">
+  <div class="container">
+    <div class="eyebrow">From Our Feed</div>
+    <h2 class="heading">Real hampers,<em>real smiles</em></h2>
+    <p class="subtext">Every hamper you see here was made with love — follow us on Instagram for more!</p>
+    <div class="gallery-grid">
+      <div class="gallery-item wide g1">
+        <span>🎀</span>
+        <div class="gallery-label">Customised Girl Hamper · Bangalore</div>
+      </div>
+      <div class="gallery-item g2">
+        <span>💍</span>
+        <div class="gallery-label">Tulip Bracelets Collection</div>
+      </div>
+      <div class="gallery-item g3">
+        <span>👶</span>
+        <div class="gallery-label">Baby Shower Hamper</div>
+      </div>
+      <div class="gallery-item g4">
+        <span>🌸</span>
+        <div class="gallery-label">Mother's Day Special</div>
+      </div>
+      <div class="gallery-item g5">
+        <span>🎁</span>
+        <div class="gallery-label">Birthday Surprise Hamper</div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+      <a href="https://instagram.com/cute_hampers_2023" target="_blank" class="btn btn-ghost">See More on Instagram 📸</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT DIARIES / REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <div class="eyebrow">Client Diaries</div>
+    <h2 class="heading">Real reviews,<em>real love</em></h2>
+    <p class="subtext">Real customers · Real smiles · Real love 💕</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-img-placeholder">🌸</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Really amazing gift... I didn't expect sooo many items inside. Very cute, loved it! Thanks to cute hampers for arranging such a wonderful gift 😍"</p>
+        <div class="review-name">Ningappa</div>
+        <div class="review-type">Birthday Hamper</div>
+      </div>
+      <div class="review-card">
+        <div class="review-img-placeholder">💝</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"It was really nice, my friend really liked it. Thanks to cute hampers for making her day special 🎀"</p>
+        <div class="review-name">Kamali</div>
+        <div class="review-type">Girly Hamper</div>
+      </div>
+      <div class="review-card">
+        <div class="review-img-placeholder">✨</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Absolutely adored this collection of items! Packaged beautifully and put together really well. I loved the colour scheme 💕"</p>
+        <div class="review-name">Ritu</div>
+        <div class="review-type">Jewellery Hamper</div>
+      </div>
+      <div class="review-card">
+        <div class="review-img-placeholder">🎀</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Thanks to my mom @cute_hampers_2023 for the surprise & this lovely hamper 😍 Making it the prettiest hamper!"</p>
+        <div class="review-name">Kavya</div>
+        <div class="review-type">Custom Hamper · Bangalore</div>
+      </div>
+      <div class="review-card">
+        <div class="review-img-placeholder">🌷</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"It was really nice. My friend really liked it. Lots of love to the whole team 💕"</p>
+        <div class="review-name">Navya</div>
+        <div class="review-type">Birthday Hamper</div>
+      </div>
+      <div class="review-card">
+        <div class="review-img-placeholder">💍</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"What you're doing is wonderful — keep up the great work! Thanks again 🙏 The packaging was just perfect."</p>
+        <div class="review-name">Nikhil</div>
+        <div class="review-type">Custom Hamper · Surprise Gift</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps-bg">
+  <div class="container">
+    <div class="eyebrow">The Process</div>
+    <h2 class="heading">Simple, sweet &<em>stress-free</em></h2>
+    <p class="subtext">Ordering your dream hamper takes just a few minutes.</p>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-circle">💬</div>
+        <h3>DM us on Instagram</h3>
+        <p>Tell us who it's for & the occasion — we love hearing the story!</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">🎀</div>
+        <h3>We curate with love</h3>
+        <p>Every item is handpicked & wrapped beautifully — just for them.</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">💳</div>
+        <h3>Prepayment & confirm</h3>
+        <p>Only prepayment accepted — no COD. Safe & simple!</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">✨</div>
+        <h3>Delivered with love</h3>
+        <p>Your hamper arrives gift-ready with a personalised thank you card.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OCCASIONS -->
+<section id="occasions">
+  <div class="container">
+    <div class="eyebrow">Perfect For</div>
+    <h2 class="heading">Every moment<em>deserves a hamper</em></h2>
+    <p class="subtext">No occasion is too big or too small — we love celebrating them all.</p>
+    <div class="occ-flex">
+      <div class="occ-pill">🎂 Birthdays</div>
+      <div class="occ-pill">👶 Baby Showers</div>
+      <div class="occ-pill">💑 Anniversaries</div>
+      <div class="occ-pill">💝 Valentine's Day</div>
+      <div class="occ-pill">🌸 Mother's Day</div>
+      <div class="occ-pill">🎄 Christmas</div>
+      <div class="occ-pill">🎓 Graduations</div>
+      <div class="occ-pill">💍 Engagements</div>
+      <div class="occ-pill">🏠 Housewarming</div>
+      <div class="occ-pill">✨ Just Because</div>
+      <div class="occ-pill">🙏 Thank You Gifts</div>
+      <div class="occ-pill">👧 Little Girl Hampers</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container" style="text-align:center;">
+    <div class="eyebrow">Let's Create Something Beautiful</div>
+    <h2 class="heading" style="max-width:520px;margin:0 auto 14px;">Ready to gift<em>a feeling?</em></h2>
+    <p class="subtext" style="margin:0 auto 36px;">DM us on Instagram or WhatsApp — we'd love to create something special for you 🎀</p>
+    <div class="cta-btns">
+      <a href="https://instagram.com/cute_hampers_2023" target="_blank" class="btn btn-pink">📸 DM on Instagram</a>
+      <a href="https://wa.me/message/yournumber" target="_blank" class="btn btn-wa">💬 WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Oh <span>Cute</span> Hampers</div>
+  <p>Customised Aesthetic Hampers · Bangalore 🎀</p>
+  <p>Gift emotions, not just hampers ✨</p>
+  <div class="footer-links">
+    <a href="#hampers">Hampers</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#occasions">Occasions</a>
+    <a href="https://instagram.com/cute_hampers_2023" target="_blank">Instagram</a>
+  </div>
+  <div class="footer-copy">© 2026 Oh Cute Hampers · Made with 💕 in Bangalore</div>
+</footer>
+
+</body>
+</html>
