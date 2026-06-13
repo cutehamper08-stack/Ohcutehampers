@@ -1,0 +1,1 @@
+Upload index.html and the images folder to the root of your GitHub repository. Keep the folder name exactly as images. Cloudflare Pages will redeploy automatically after commit. Replace yournumber in index.html with your WhatsApp Business number/link.
